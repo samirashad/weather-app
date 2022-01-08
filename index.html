@@ -14,7 +14,49 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <div class="container">
-    <h1>Weather</h1>
+    <div class="main mt-3">
+      <div class="row">
+        <div class="col-3 pl-3">
+          <p class="mt-5" id="currentTime"></p>
+          <h1 id="cityName">Mashhad</h1>
+          <span class="currentDegree" id="currentDegree">19</span>
+          <span class="degrees"
+            ><a href="#" style="text-decoration: none" id="celsius">°C </a>|
+            <a href="#" style="text-decoration: none" id="fahrenheit"
+              >F
+            </a></span
+          >
+          <p class="mt-5">
+            wind: <span id="speed"> 11</span> km/h
+            <br />
+            Humidity: <span id="humidity">78</span>%
+          </p>
+        </div>
+
+        <div class="col-3">
+          <img
+            src="images/weatherImg.jpg"
+            width="300px"
+            class="mt-3 img-fluid"
+            alt="Responsive image"
+          />
+          <h2 id="description">Mostly Cloudly</h2>
+          <span class="font-weight-bold">
+            H : <span id="tempMax">4</span>° <br />
+            L : <span id="tempMin">-2</span>°
+          </span>
+        </div>
+      </div>
+    </div>
+    <small>
+      <a
+        href="https://github.com/samirashad/ShecodesPlusProject"
+        class="sourceLink"
+        target="_blank"
+        >open-source code</a
+      >
+      by Samira Shad
+    </small>
   </div>
 
   <body>
