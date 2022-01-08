@@ -36,6 +36,12 @@ function displayInformation(response) {
   document.querySelector("#currentTime").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  console.log(
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  document.querySelector(
+    "#weatherIcon"
+  ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 }
 
 let apiKey = "0cade312aa440618836af6e6fd05e7ad";
