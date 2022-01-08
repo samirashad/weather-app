@@ -11,15 +11,16 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <div class="container">
     <div class="main">
       <div class="row">
         <div class="col-4">
-          <h1 id="cityName">Mashhad</h1>
-          <div id="currentTime">Monday 15:15</div>
-          <span id="currentDegree">19</span>
+          <h1 id="cityName"></h1>
+          <div id="currentTime"></div>
+          <span id="currentDegree"></span>
           <span class="degrees"
             ><a href="#" style="text-decoration: none" id="celsius">°C </a>|
             <a href="#" style="text-decoration: none" id="fahrenheit"
@@ -27,19 +28,19 @@
             </a></span
           >
         </div>
-
         <div class="col-6">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
-            width="100px"
-            class="clearfix float-left"
-            alt="Responsive image"
-          />
-          <span id="description"> Mostly Cloudly</span>
+          <div class="description clearfix">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
+              width="100px"
+              alt="Responsive image"
+            />
+            <span id="description" class="float-left"> Mostly Cloudly</span>
+          </div>
           <p class="specification">
-            <strong>wind:</strong> <span id="speed"> 11</span> km/h
+            <strong>Wind:</strong> <span id="speed"> </span> km/h
             <br />
-            <strong>Humidity:</strong> <span id="humidity">78</span>%
+            <strong>Humidity:</strong> <span id="humidity"></span>%
           </p>
         </div>
       </div>
@@ -53,7 +54,6 @@
       by Samira Shad
     </span>
   </div>
-
   <body>
     <script src="src/app.js"></script>
   </body>

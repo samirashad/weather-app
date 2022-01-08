@@ -24,7 +24,6 @@ body {
   font-size: 40px;
   font-weight: 500;
   line-height: 100px;
-  margin-bottom: 0;
 }
 .degrees {
   position: relative;
@@ -39,6 +38,7 @@ p.specification {
 
 #description {
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 #cityName {
