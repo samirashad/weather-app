@@ -55,3 +55,13 @@ p.specification {
   text-decoration: none;
   cursor: default;
 }
+.weatherForecastTemperatures {
+  text-align: center;
+}
+.card-body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.card-title {
+  line-height: 25px;
+}
