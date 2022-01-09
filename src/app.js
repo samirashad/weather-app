@@ -20,6 +20,7 @@ function formatDate(timestamp) {
   let formattedTime = `${days[currentDate.getDay()]} ${hour}:${minute}`;
   return formattedTime;
 }
+
 function displayInformation(response) {
   document.querySelector("#currentDegree").innerHTML = Math.round(
     response.data.main.temp
@@ -36,14 +37,18 @@ function displayInformation(response) {
   document.querySelector("#currentTime").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  celsiusTemperature = Math.round(response.data.main.temp);
+  farenhaitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   document.querySelector(
     "#weatherIcon"
   ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 }
+
 function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayInformation);
 }
+
 function handleSubmit(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#searchBox");
@@ -53,18 +58,35 @@ function handleSubmit(event) {
     alert("enter a city");
   }
 }
+
 function getCoordinates(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayInformation);
 }
+
 function handleClickCurrentBtn(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getCoordinates);
 }
 
+function convertToFarenhait(event) {
+  event.preventDefault();
+  document.querySelector("#currentDegree").innerHTML = farenhaitTemperature;
+}
+function convertToCelsius(event) {
+  event.preventDefault();
+  document.querySelector("#currentDegree").innerHTML = celsiusTemperature;
+}
+
+let celsiusTemperature;
+let farenhaitTemperature;
 let apiKey = "0cade312aa440618836af6e6fd05e7ad";
 search("mashhad");
 document.querySelector("#searchCity").addEventListener("submit", handleSubmit);
 document
   .querySelector("#currentLocation")
   .addEventListener("click", handleClickCurrentBtn);
+document
+  .querySelector("#fahrenheit")
+  .addEventListener("click", convertToFarenhait);
+document.querySelector("#celsius").addEventListener("click", convertToCelsius);
