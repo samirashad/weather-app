@@ -54,6 +54,7 @@ function handleSubmit(event) {
   let cityInput = document.querySelector("#searchBox");
   if (cityInput.value !== "") {
     search(cityInput.value);
+    cityInput.value = "";
   } else {
     alert("enter a city");
   }
