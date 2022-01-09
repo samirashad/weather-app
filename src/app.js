@@ -71,22 +71,32 @@ function handleClickCurrentBtn(event) {
 
 function convertToFarenhait(event) {
   event.preventDefault();
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
   document.querySelector("#currentDegree").innerHTML = farenhaitTemperature;
 }
 function convertToCelsius(event) {
   event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
   document.querySelector("#currentDegree").innerHTML = celsiusTemperature;
 }
 
-let celsiusTemperature;
-let farenhaitTemperature;
+let celsiusTemperature = null;
+
+let farenhaitTemperature = null;
+
 let apiKey = "0cade312aa440618836af6e6fd05e7ad";
+
 search("mashhad");
 document.querySelector("#searchCity").addEventListener("submit", handleSubmit);
+
 document
   .querySelector("#currentLocation")
   .addEventListener("click", handleClickCurrentBtn);
+
 document
   .querySelector("#fahrenheit")
   .addEventListener("click", convertToFarenhait);
+
 document.querySelector("#celsius").addEventListener("click", convertToCelsius);

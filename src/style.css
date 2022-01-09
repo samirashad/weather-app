@@ -47,3 +47,11 @@ p.specification {
   margin-bottom: 0;
   margin-top: 10px;
 }
+
+.degrees .active {
+  color: black;
+}
+.degrees a:hover {
+  text-decoration: none;
+  cursor: default;
+}
