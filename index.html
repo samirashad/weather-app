@@ -16,9 +16,37 @@
   </head>
   <div class="container">
     <div class="main">
+      <form id="searchCity">
+        <div class="row">
+          <div class="col-6">
+            <input
+              type="search"
+              placeholder="Enter City"
+              class="form-control"
+              autocomplete="off"
+              autofocus="on"
+              id="searchBox"
+            />
+          </div>
+          <div class="col-2">
+            <input
+              type="submit"
+              class="btn btn-success w-100"
+              value="search"
+              id="search"
+            />
+          </div>
+          <div class="col-4">
+            <button class="btn btn-success" id="currentLocation">
+              Current location
+            </button>
+          </div>
+        </div>
+      </form>
+
       <div class="row">
         <div class="col-4">
-          <h1 id="cityName"></h1>
+          <div id="cityName"></div>
           <div id="currentTime"></div>
           <span id="currentDegree"></span>
           <span class="degrees"

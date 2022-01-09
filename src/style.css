@@ -43,6 +43,7 @@ p.specification {
 
 #cityName {
   font-size: 40px;
-  font-family: 600;
+  font-weight: 600;
   margin-bottom: 0;
+  margin-top: 10px;
 }
