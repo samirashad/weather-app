@@ -119,7 +119,6 @@ function convertToFarenhait(event) {
   document.querySelector("#currentDegree").innerHTML = farenhaitTemperature;
   let forecastMaxTemperatures = document.querySelectorAll(".maxTemp");
   let forecastMinTemperatures = document.querySelectorAll(".minTemp");
-  console.log(forecastMinTemperatures);
   forecastMaxTemperatures.forEach(function (element, index) {
     element.innerHTML = Math.round(
       (maxTemperaturesCelsius[index] * 9) / 5 + 32
@@ -168,5 +167,3 @@ document
   .addEventListener("click", convertToFarenhait);
 
 document.querySelector("#celsius").addEventListener("click", convertToCelsius);
-
-displayForecast();
