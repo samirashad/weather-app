@@ -29,6 +29,10 @@ function formatDay(time) {
 
 function displayForecast(response) {
   let forecast = response.data.daily.slice(0, 6);
+  forecast.forEach(function (day) {
+    maxTemperaturesCelsius.push(day.temp.max);
+    minTemperaturesCelsius.push(day.temp.min);
+  });
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (day) {
     forecastHTML += `<div class="col-sm-2">
@@ -46,7 +50,7 @@ function displayForecast(response) {
                   H : <span class="maxTemp">${Math.round(
                     day.temp.max
                   )}</span>° <br />
-                  L : <span class=minTemp">${Math.round(day.temp.min)}</span>°
+                  L : <span class="minTemp">${Math.round(day.temp.min)}</span>°
                 </div>
               </div>
             </div>
@@ -113,18 +117,42 @@ function convertToFarenhait(event) {
   celsius.classList.remove("active");
   fahrenheit.classList.add("active");
   document.querySelector("#currentDegree").innerHTML = farenhaitTemperature;
-  document.querySelector(".maxTemp").innerHTML=
+  let forecastMaxTemperatures = document.querySelectorAll(".maxTemp");
+  let forecastMinTemperatures = document.querySelectorAll(".minTemp");
+  console.log(forecastMinTemperatures);
+  forecastMaxTemperatures.forEach(function (element, index) {
+    element.innerHTML = Math.round(
+      (maxTemperaturesCelsius[index] * 9) / 5 + 32
+    );
+  });
+  forecastMinTemperatures.forEach(function (element, index) {
+    element.innerHTML = Math.round(
+      (minTemperaturesCelsius[index] * 9) / 5 + 32
+    );
+  });
 }
 function convertToCelsius(event) {
   event.preventDefault();
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
   document.querySelector("#currentDegree").innerHTML = celsiusTemperature;
+  let forecastMaxTemperatures = document.querySelectorAll(".maxTemp");
+  let forecastMinTemperatures = document.querySelectorAll(".minTemp");
+  forecastMaxTemperatures.forEach(function (element, index) {
+    element.innerHTML = Math.round(maxTemperaturesCelsius[index]);
+  });
+  forecastMinTemperatures.forEach(function (element, index) {
+    element.innerHTML = Math.round(minTemperaturesCelsius[index]);
+  });
 }
 
 let celsiusTemperature = null;
 
 let farenhaitTemperature = null;
+
+let minTemperaturesCelsius = [];
+
+let maxTemperaturesCelsius = [];
 
 let apiKey = "0cade312aa440618836af6e6fd05e7ad";
 
