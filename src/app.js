@@ -4,7 +4,7 @@ function formatDate(timestamp) {
     "Sunday",
     "Monday",
     "Tuesday",
-    "Wedbesday",
+    "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
@@ -19,6 +19,41 @@ function formatDate(timestamp) {
   }
   let formattedTime = `${days[currentDate.getDay()]} ${hour}:${minute}`;
   return formattedTime;
+}
+
+function formatDay(time) {
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let date = new Date(time);
+  return days[date.getDay()];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily.slice(0, 6);
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (day) {
+    forecastHTML += `<div class="col-sm-2">
+            <div class="cards">
+              <div class="card">
+                <div class="card-body">${formatDay(day.dt * 1000)}</div>
+                <img
+                  class="card-img-top"
+                  src="http://openweathermap.org/img/wn/${
+                    day.weather[0].icon
+                  }@2x.png"
+                  width="50px"
+                />
+                <div class="card-title">
+                  H : <span class="maxTemp">${Math.round(
+                    day.temp.max
+                  )}</span>° <br />
+                  L : <span class=minTemp">${Math.round(day.temp.min)}</span>°
+                </div>
+              </div>
+            </div>
+          </div>`;
+  });
+  forecastHTML += `</div>`;
+  document.querySelector("#forecast").innerHTML = forecastHTML;
 }
 
 function displayInformation(response) {
@@ -42,6 +77,9 @@ function displayInformation(response) {
   document.querySelector(
     "#weatherIcon"
   ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function search(city) {
@@ -75,37 +113,13 @@ function convertToFarenhait(event) {
   celsius.classList.remove("active");
   fahrenheit.classList.add("active");
   document.querySelector("#currentDegree").innerHTML = farenhaitTemperature;
+  document.querySelector(".maxTemp").innerHTML=
 }
 function convertToCelsius(event) {
   event.preventDefault();
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
   document.querySelector("#currentDegree").innerHTML = celsiusTemperature;
-}
-function displayForecast() {
-  let days = ["Sun", "Mon", "Tue"];
-  let forecastHTML = `<div class="row">`;
-  debugger;
-  days.forEach(function (day) {
-    forecastHTML += `<div class="col-sm-2">
-            <div class="cards">
-              <div class="card">
-                <div class="card-body">${day}</div>
-                <img
-                  class="card-img-top"
-                  src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
-                  width="50px"
-                />
-                <div class="card-title">
-                  H : 4° <br />
-                  L : -2°
-                </div>
-              </div>
-            </div>
-          </div>`;
-  });
-  forecastHTML += `</div>`;
-  document.querySelector("#forecast").innerHTML = forecastHTML;
 }
 
 let celsiusTemperature = null;
