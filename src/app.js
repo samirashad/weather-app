@@ -82,6 +82,31 @@ function convertToCelsius(event) {
   fahrenheit.classList.remove("active");
   document.querySelector("#currentDegree").innerHTML = celsiusTemperature;
 }
+function displayForecast() {
+  let days = ["Sun", "Mon", "Tue"];
+  let forecastHTML = `<div class="row">`;
+  debugger;
+  days.forEach(function (day) {
+    forecastHTML += `<div class="col-sm-2">
+            <div class="cards">
+              <div class="card">
+                <div class="card-body">${day}</div>
+                <img
+                  class="card-img-top"
+                  src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
+                  width="50px"
+                />
+                <div class="card-title">
+                  H : 4° <br />
+                  L : -2°
+                </div>
+              </div>
+            </div>
+          </div>`;
+  });
+  forecastHTML += `</div>`;
+  document.querySelector("#forecast").innerHTML = forecastHTML;
+}
 
 let celsiusTemperature = null;
 
@@ -101,3 +126,5 @@ document
   .addEventListener("click", convertToFarenhait);
 
 document.querySelector("#celsius").addEventListener("click", convertToCelsius);
+
+displayForecast();
